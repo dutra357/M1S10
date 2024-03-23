@@ -2,13 +2,19 @@ package com.br.FullStack.M1S10.services;
 
 import com.br.FullStack.M1S10.entities.AlunoEntity;
 
+import java.util.List;
+
 public interface AlunoService {
 
-    List<AlunoEntity> buscarTodos();
-    List<AlunoEntity> buscarPorId(Long id);
-    List<AlunoEntity> criar(AlunoEntity entity);
-    List<AlunoEntity> alterar(Long id, AlunoEntity entity);
+    AlunoEntity buscarPorId(Long id);
 
+    AlunoEntity criar(AlunoEntity entity);
+
+    List<AlunoEntity> buscarTodos();
+
+    AlunoEntity alterar(Long id, AlunoEntity entity);
+
+    void excluir(Long id);
 
 
 
