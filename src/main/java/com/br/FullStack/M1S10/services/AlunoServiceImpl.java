@@ -19,12 +19,12 @@ public class AlunoServiceImpl implements AlunoService{
 
     @Override
     public AlunoEntity buscarPorId(Long id) {
-        return null;
+        return repository.findById(id).orElseThrow();
     }
 
     @Override
     public List<AlunoEntity> buscarTodos() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
@@ -34,11 +34,13 @@ public class AlunoServiceImpl implements AlunoService{
 
     @Override
     public AlunoEntity alterar(Long id, AlunoEntity entity) {
-        return null;
+        return repository.save(entity);
     }
 
     @Override
     public void excluir(Long id) {
+        AlunoEntity entity = buscarPorId(id);
+        repository.delete(entity);
 
     }
 }
