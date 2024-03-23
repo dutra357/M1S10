@@ -8,17 +8,18 @@ import lombok.Data;
 @Table(name = "materiais")
 public class MaterialEntity {
 
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
-    private String descricao;
 
     @ManyToOne
     @JoinColumn(name = "agenda_id", nullable = false)
     private AgendaEntity agenda;
-    
+
 
     @Column(nullable = false)
-    private String caminhoArquivo;
+    private String caminho;
+
+    @Column
+    private String descricao;
 }
