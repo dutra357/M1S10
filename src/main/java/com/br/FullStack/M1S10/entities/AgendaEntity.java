@@ -22,6 +22,8 @@ public class AgendaEntity {
     @JoinColumn(name = "tutor_id", nullable = false)
     private TutorEntity tutor;
 
+
+
     @Column(nullable = false, length = 150)
     private String tema;
 
