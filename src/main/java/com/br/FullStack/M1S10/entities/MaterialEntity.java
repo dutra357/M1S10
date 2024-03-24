@@ -19,7 +19,5 @@ public class MaterialEntity {
 
     @Column(nullable = false)
     private String caminho;
-
-    @Column
     private String descricao;
 }

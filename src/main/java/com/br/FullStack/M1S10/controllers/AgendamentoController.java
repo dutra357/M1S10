@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("agendamento")
+@RequestMapping("agendamentos")
 public class AgendamentoController {
     private final AgendaService service;
 

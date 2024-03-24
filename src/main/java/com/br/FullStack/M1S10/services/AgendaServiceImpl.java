@@ -35,6 +35,7 @@ public class AgendaServiceImpl implements AgendaService {
 
     @Override
     public AgendaEntity criar(AgendaEntity entity) {
+        entity.setId(null);
         AlunoEntity aluno = alunoService.buscarPorId((entity.getAluno().getId()));
         entity.setAluno(aluno);
         TutorEntity tutor = tutorService.buscarPorId((entity.getAluno().getId()));
@@ -44,6 +45,8 @@ public class AgendaServiceImpl implements AgendaService {
 
     @Override
     public AgendaEntity alterar(Long id, AgendaEntity entity) {
+        buscarPorId(id);
+        entity.setId(id);
         AlunoEntity aluno = alunoService.buscarPorId(entity.getAluno().getId());
         entity.setAluno(aluno);
         TutorEntity tutor = tutorService.buscarPorId(entity.getTutor().getId());
@@ -62,12 +65,12 @@ public class AgendaServiceImpl implements AgendaService {
     @Override
     public List<AgendaEntity> buscarAlunoId(Long alunoId) {
         alunoService.buscarPorId(alunoId);
-        return repository.buscarAlunoOrdemData(alunoId);
+        return repository.findByAlunoIdOrderByData(alunoId);
     }
     @Override
     public List<AgendaEntity> buscarProximosAlunos(Long alunoId) {
         alunoService.buscarPorId(alunoId);
-        return repository.buscarAlunoIdMaiorOrdemData(alunoId, LocalDateTime.now());
+        return repository.findByAlunoIdAndDataGreaterThanOrderByData(alunoId, LocalDateTime.now());
     }
 
 
@@ -75,11 +78,13 @@ public class AgendaServiceImpl implements AgendaService {
 
     @Override
     public List<AgendaEntity> buscarTutorId(Long tutorId) {
-        return repository.buscarTutorIdOrdemData(tutorId);
+        tutorService.buscarPorId(tutorId);
+        return repository.findByTutorIdOrderByData(tutorId);
     }
 
     @Override
     public List<AgendaEntity> buscarProximoTutor(Long tutorId) {
-        return repository.buscarTutorIdMaiorOrdemData(tutorId, LocalDateTime.now());
+        tutorService.buscarPorId(tutorId);
+        return repository.findByTutorIdAndDataGreaterThanOrderByData(tutorId, LocalDateTime.now());
     }
 }

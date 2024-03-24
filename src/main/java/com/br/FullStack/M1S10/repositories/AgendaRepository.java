@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface AgendaRepository extends JpaRepository<AgendaEntity, Long> {
-    List<AgendaEntity> buscarAlunoOrdemData(Long alunoId);
+    List<AgendaEntity> findByAlunoIdOrderByData(Long alunoId);
 
-    List<AgendaEntity> buscarAlunoIdMaiorOrdemData(Long alunoId, LocalDateTime data);
+    List<AgendaEntity> findByAlunoIdAndDataGreaterThanOrderByData(Long alunoId, LocalDateTime data);
 
-    List<AgendaEntity> buscarTutorIdOrdemData(Long tutorId);
+    List<AgendaEntity> findByTutorIdOrderByData(Long tutorId);
 
-    List<AgendaEntity> buscarTutorIdMaiorOrdemData(Long tutorId, LocalDateTime data);
+    List<AgendaEntity> findByTutorIdAndDataGreaterThanOrderByData(Long tutorId, LocalDateTime data);
 }

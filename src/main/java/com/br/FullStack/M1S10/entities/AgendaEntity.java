@@ -26,12 +26,10 @@ public class AgendaEntity {
 
     @Column(nullable = false, length = 150)
     private String tema;
-
-    @Column
     private String descricao;
 
     @Column(nullable = false)
-    private LocalDate dataAgendada;
+    private LocalDate data;
 
     @Column(nullable = false)
     private String satus;
