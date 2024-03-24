@@ -10,7 +10,6 @@ public interface TutorService {
     TutorEntity buscarPorId(Long id);
     TutorEntity criar (TutorEntity entity);
     TutorEntity alterar (Long id, TutorEntity entity);
-
     void excluir (Long id);
 
 }

@@ -3,9 +3,11 @@ package com.br.FullStack.M1S10.services;
 import com.br.FullStack.M1S10.entities.TutorEntity;
 import com.br.FullStack.M1S10.exceptions.NotFoundException;
 import com.br.FullStack.M1S10.repositories.TutorRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TutorServiceImpl implements TutorService {
 
     private final TutorRepository repository;

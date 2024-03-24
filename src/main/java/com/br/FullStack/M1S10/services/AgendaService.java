@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AgendaService {
 
-    List<AgendaEntity> burscarTodos();
+    List<AgendaEntity> buscarTodos();
 
     AgendaEntity buscarPorId(Long id);
 

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class AgendaServiceImpl implements AgendaService{
+public class AgendaServiceImpl implements AgendaService {
 
     private final AlunoService alunoService;
     private final TutorService tutorService;
@@ -24,7 +24,7 @@ public class AgendaServiceImpl implements AgendaService{
 
 
     @Override
-    public List<AgendaEntity> burscarTodos() {
+    public List<AgendaEntity> buscarTodos() {
         return repository.findAll();
     }
 
