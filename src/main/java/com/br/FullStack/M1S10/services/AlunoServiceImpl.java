@@ -1,8 +1,9 @@
 package com.br.FullStack.M1S10.services;
 
+import com.br.FullStack.M1S10.Dto.AlunoDto;
 import com.br.FullStack.M1S10.entities.AlunoEntity;
 import com.br.FullStack.M1S10.repositories.AlunoRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,15 @@ public class AlunoServiceImpl implements AlunoService{
     @Override
     public AlunoEntity buscarPorId(Long id) {
         return repository.findById(id).orElseThrow();
+    }
+
+
+
+    @Transactional
+    public AlunoDto buscarPorIdDto (Long id) {
+        //Para acessar o objeto OPTIONAL precisa do get()
+        AlunoEntity alunoEntity = repository.findById(id).get();
+        return new AlunoDto(alunoEntity);
     }
 
     @Override

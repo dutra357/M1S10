@@ -1,5 +1,6 @@
 package com.br.FullStack.M1S10.services;
 
+import com.br.FullStack.M1S10.Dto.AlunoDto;
 import com.br.FullStack.M1S10.entities.AlunoEntity;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 public interface AlunoService {
 
     AlunoEntity buscarPorId(Long id);
+    AlunoDto buscarPorIdDto(Long id);
 
     AlunoEntity criar(AlunoEntity entity);
 

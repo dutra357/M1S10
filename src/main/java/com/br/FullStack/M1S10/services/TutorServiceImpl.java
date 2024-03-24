@@ -10,12 +10,12 @@ import java.util.List;
 @Service
 public class TutorServiceImpl implements TutorService {
 
-    private final TutorRepository repository;
-
-
+    private final TutorRepository repository; //interface
     public TutorServiceImpl(TutorRepository repository) {
         this.repository = repository;
     }
+
+
 
     @Override
     public List<TutorEntity> buscarTodos() {

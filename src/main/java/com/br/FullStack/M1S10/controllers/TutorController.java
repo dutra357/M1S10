@@ -1,4 +1,4 @@
-package br.com.fullstack.education.m1s10exercicios.controllers;
+package com.br.FullStack.M1S10.controllers;
 
 import com.br.FullStack.M1S10.entities.TutorEntity;
 import com.br.FullStack.M1S10.services.TutorService;
@@ -13,11 +13,11 @@ import java.util.List;
 public class TutorController {
 
     private final TutorService service;
-
-
     public TutorController(TutorService service) {
         this.service = service;
     }
+
+
 
     @GetMapping
     public ResponseEntity<List<TutorEntity>> get() {
@@ -30,16 +30,15 @@ public class TutorController {
     }
 
     @PostMapping
-    public ResponseEntity<TutorEntity> post(@RequestBody TutorEntity request) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(service.criar(request));
+    public ResponseEntity<TutorEntity> post(@RequestBody TutorEntity tutor) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(tutor));
     }
 
     @PutMapping("{id}")
     public ResponseEntity<TutorEntity> put(
-            @PathVariable Long id, @RequestBody TutorEntity request
+            @PathVariable Long id, @RequestBody TutorEntity tutor
     ) {
-        return ResponseEntity.ok(service.alterar(id, request));
+        return ResponseEntity.ok(service.alterar(id, tutor));
     }
 
     @DeleteMapping("{id}")
