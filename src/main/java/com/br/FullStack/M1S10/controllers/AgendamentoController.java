@@ -2,11 +2,9 @@ package com.br.FullStack.M1S10.controllers;
 
 import com.br.FullStack.M1S10.entities.AgendaEntity;
 import com.br.FullStack.M1S10.services.AgendaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +28,41 @@ public class AgendamentoController {
     public ResponseEntity<AgendaEntity> getId(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
+
+    @GetMapping("aluno_id/{alunoId}")
+    public ResponseEntity<List<AgendaEntity>> getAlunoId(@PathVariable Long alunoId) {
+        return ResponseEntity.ok(service.buscarAlunoId(alunoId));
+    }
+
+    @GetMapping("aluno_id/{alunoId}/futuros")
+    public ResponseEntity<List<AgendaEntity>> getProximosAlunoId(@PathVariable Long alunoId) {
+        return ResponseEntity.ok(service.buscarProximosAlunos(alunoId));
+    }
+
+    @GetMapping("tutor_id/{tutorId}")
+    public ResponseEntity<List<AgendaEntity>> getTutorId (@PathVariable Long tutorId) {
+        return ResponseEntity.ok(service.buscarTutorId(tutorId));
+    }
+
+    @GetMapping("tutor_id/{tutorId}/futuros")
+    public ResponseEntity<List<AgendaEntity>> getProximosTutorId(@PathVariable Long tutorId) {
+        return ResponseEntity.ok(service.buscarProximoTutor(tutorId));
+    }
+
+    @PostMapping
+    public ResponseEntity<AgendaEntity> post(@RequestBody AgendaEntity request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(request));
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<AgendaEntity> put(@PathVariable Long id, @RequestBody AgendaEntity alteracao) {
+        return ResponseEntity.ok(service.alterar(id, alteracao));
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.excluir(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
