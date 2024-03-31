@@ -2,9 +2,9 @@ package com.br.FullStack.M1S10.services;
 
 import com.br.FullStack.M1S10.Dto.AlunoDto;
 import com.br.FullStack.M1S10.entities.AlunoEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 public interface AlunoService {
 
     AlunoEntity buscarPorId(Long id);
@@ -12,7 +12,7 @@ public interface AlunoService {
 
     AlunoEntity criar(AlunoEntity entity);
 
-    List<AlunoEntity> buscarTodos();
+    List<AlunoDto> buscarTodos();
 
     AlunoEntity alterar(Long id, AlunoEntity entity);
 

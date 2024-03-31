@@ -14,27 +14,27 @@ import java.util.List;
 public class AlunoController {
 
     private final AlunoService service;
-
     public AlunoController(AlunoService service) {
         this.service = service;
     }
 
 
-    @GetMapping
-    public ResponseEntity<List<AlunoEntity>> get() {
-        var resultado = service.buscarTodos();
-        return ResponseEntity.ok(resultado);
-    }
-
-    @PostMapping
-    public ResponseEntity<AlunoEntity> post(@RequestBody AlunoEntity newAluno) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(newAluno));
-    }
-
     //Padrão DTO - teste
     @GetMapping("{id}")
     public ResponseEntity<AlunoDto> getId(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscarPorIdDto(id));
+    }
+    @GetMapping
+    public ResponseEntity<List<AlunoDto>> get() {
+        var resultado = service.buscarTodos();
+        return ResponseEntity.ok(resultado);
+    }
+
+
+    //CREATED para retorno do 201
+    @PostMapping
+    public ResponseEntity<AlunoEntity> post(@RequestBody AlunoEntity newAluno) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(newAluno));
     }
 
     @PutMapping("{id}")

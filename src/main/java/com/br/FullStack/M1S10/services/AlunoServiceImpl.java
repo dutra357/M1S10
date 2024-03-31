@@ -2,25 +2,25 @@ package com.br.FullStack.M1S10.services;
 
 import com.br.FullStack.M1S10.Dto.AlunoDto;
 import com.br.FullStack.M1S10.entities.AlunoEntity;
+import com.br.FullStack.M1S10.exceptions.NotFoundException;
 import com.br.FullStack.M1S10.repositories.AlunoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AlunoServiceImpl implements AlunoService{
-
     //Dependencia
     private final AlunoRepository repository;
     public AlunoServiceImpl(AlunoRepository repository) {
         this.repository = repository;
     }
 
-
     @Override
     public AlunoEntity buscarPorId(Long id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Aluno não encontrado com este ID: " + id));
     }
 
 
@@ -31,11 +31,12 @@ public class AlunoServiceImpl implements AlunoService{
         AlunoEntity alunoEntity = repository.findById(id).get();
         return new AlunoDto(alunoEntity);
     }
-
     @Override
-    public List<AlunoEntity> buscarTodos() {
-        return repository.findAll();
+    public List<AlunoDto> buscarTodos() {
+        List<AlunoEntity> listDto = repository.findAll();
+        return listDto.stream().map(x -> new AlunoDto(x)).collect(Collectors.toList());
     }
+
 
     @Override
     public AlunoEntity criar(AlunoEntity entity) {

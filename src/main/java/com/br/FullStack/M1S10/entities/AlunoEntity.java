@@ -16,4 +16,5 @@ public class AlunoEntity {
 
     @Column(nullable = false)
     private String name;
+
 }
